@@ -1,0 +1,10 @@
+
+const fetchPromise = fetch('bad-scheme://mdn.github.io/learning-area/javascript/apis/fetching-data/can-store/products.json');
+
+fetchPromise
+  .then((response) => {
+    if (!response.ok) throw new Error(response.status);
+    return response.json();
+  })
+  .then((data) => { console.log(data);})
+  .catch(err => { console.log("ERROR: ", err)})

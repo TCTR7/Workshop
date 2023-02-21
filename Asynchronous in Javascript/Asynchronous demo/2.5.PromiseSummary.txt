@@ -1,0 +1,22 @@
+const f1 = () => { console.log("f1") }
+
+const f2 = () => { console.log("f2") }
+
+const f3 = () => { console.log("f3") }
+
+const main = () => {
+	console.log("main");
+	setTimeout(f1, 3000);
+	setTimeout(f3, 2000);
+	
+	new Promise((resolve, reject) => {
+		resolve("I am a promise, right after f1 and f3! Really?")
+	}).then(value => console.log(value))
+	
+	new Promise((resolve, reject) => {
+		resolve("I am a promise after Promise!")
+	}).then(value => console.log(value))
+	f2();
+}
+
+main();

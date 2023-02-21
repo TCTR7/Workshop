@@ -1,0 +1,36 @@
+const a = 10000000; const b = 5;
+const sum = (a) => {
+    return new Promise((res, rej) => {
+        let sum = 0;
+        for(let i = 0; i< a; i++){ sum += i; }
+        res(sum);
+    })
+}
+const sum1 = (a) => { return sum(a);} 
+const sum2 = (a) => { return sum(a);}
+const sum3 = (a) => { return sum(a);} 
+const sum4 = (a) => { return sum(a);}
+const sum5 = (a) => { return sum(a);}
+const multi = (a, b) => {
+    return new Promise((res, rej) => {
+        res(a*b);
+    })
+}
+const main = async () => {
+    let startTime = new Date().getTime();
+    try
+    {
+        const sumResult1 = await sum1(a); const sumResult2 = await sum2(a);
+        const sumResult3 = await sum3(a); const sumResult4 = await sum4(a);
+        const sumResult5 = await sum5(a); const multiResult = await multi(a, b);
+        console.log(`Await result: ${sumResult1 + sumResult2 + sumResult3 + sumResult4 + sumResult5 + multiResult}` + ` - Await Time: , ${new Date().getTime() - startTime}`);
+    }
+    catch (err ){ console.log(err)}
+    // Using Promise.all
+    startTime = new Date().getTime();
+    try {
+        const result = await Promise.all([sum1(a), sum2(a), sum3(a), sum4(a), sum5(a), multi(a,b)]);
+    console.log(`Promise.all Result: ${result[0] + result[1] + result[2] + result[3] + result[4] + result[5]}` + ` - Promise.all Time: ${new Date().getTime() - startTime}`);
+    } catch (err) { console.log(err) }
+}
+main();

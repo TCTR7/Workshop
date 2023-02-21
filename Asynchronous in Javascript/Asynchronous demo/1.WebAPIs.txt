@@ -1,0 +1,6 @@
+console.log("Hi")
+
+const foo = () => { console.log("f1") }
+setTimeout(foo, 3000);
+
+console.log("Hi, I'm not blocked")
